@@ -1,0 +1,13 @@
+!!!
+%html
+  %head
+    %title Harvard Reference Generator!
+    %link(rel="stylesheet" href="css/style.css")
+  %body
+    %h1 Harvard Reference Generator!
+    %form(action="/result" method="post")
+      %img(src="uploads/textbox.png")
+      %textarea(name="raw_list" cols="24" rows="8")
+      %br
+      %br
+      %input#button(type="submit" value="Gimme!")

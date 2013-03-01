@@ -1,0 +1,49 @@
+body {
+	text-align: center;
+	margin-top: 50px;
+}
+
+h1 {
+	font-family: Avenir;
+	color: #00A264;
+	margin-bottom: 40px;
+}
+
+img	{
+	position: relative;
+}
+
+textarea {
+	position: absolute;
+	margin-left: -546px;
+	margin-top: 16px;
+	width: 493px;
+	height: 409px;
+	padding: 16px;
+	resize: none;
+	border: none;	
+	font-family: "Gill sans";
+	font-size: 20px;
+	line-height: 1.3em;
+	color: #7F7F7F;
+
+}
+
+#button {
+	background: url('../uploads/button.png');
+	margin-top: 40px;
+	width: 184px;
+	height: 77px;
+	color: rgba(255, 255, 255, 0); /* Set button value text to transparent */
+	border: none;
+}
+
+#button:active {
+	background: url('../uploads/button-pressed.png');
+	width: 174px;
+	height: 72px;	
+}
+
+*:focus {
+	outline: 0px none transparent;
+}

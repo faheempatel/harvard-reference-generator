@@ -1,0 +1,7 @@
+<% (0..@however_many).each do |i| %>
+    <p>
+        <%= "#{@authors[i]}, #{@dates[i]}." %>
+        <em><%= "#{@titles[i]}." %></em>
+        <%= " #{@publishers[i]}" %>
+    </p>
+<% end %>
