@@ -20,7 +20,7 @@ post '/result' do
     @authors = []
 
     isbns.each do |isbn|
-        book = details.find_by_isbn(isbn)
+        book = details.find_by_isbn(isbn.strip)
         @titles << book.title
         @dates << book.publish_date
         @publishers << book.publishers[0]["name"]
