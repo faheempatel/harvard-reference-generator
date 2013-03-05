@@ -1,4 +1,5 @@
 _STORE
+.DS_Store
 *.swp
 *.rbc
 *.sass-cache
