@@ -27,6 +27,6 @@ post '/result' do
         @authors << book.authors[0]["name"]
      end
 
-     @however_many = @titles.length - 1
+    @however_many = @titles.length - 1
     erb :result
 end
