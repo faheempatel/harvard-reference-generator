@@ -18,3 +18,6 @@ Still a WIP but when done will quickly and easily generate a Harvard System bibl
   - Also add appropriate message should a reference(s) not be found
   - Should a request result in multiple possible references — allow the person to choose. 
 - Make a Chrome extension?
+- Start searching for book as it's being entered (in the background)?
+  - Cache results? 
+- Auto-complete entry?
