@@ -1,0 +1,19 @@
+!!!
+%html
+  %head
+    %title Results!
+    %link(rel="stylesheet" href="")
+  %body
+    - @isbns.each do |isbn|
+      - book      = @details.find_by_isbn(isbn.strip)
+      - title     = book.title
+      - date      = book.publish_date
+      - publisher = book.publishers[0]["name"]
+      - author    = book.authors[0]["name"]
+
+      -# Display reference
+      %p
+        = "#{author}, #{date}."
+        %em
+          = "#{title}."
+        = " #{publisher}"
