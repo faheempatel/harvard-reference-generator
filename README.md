@@ -16,3 +16,4 @@ Still a WIP but when done will quickly and easily generate a Harvard System bibl
 - Copy to clipboard button
 - Make it pretty
   - Also add appropriate message should a reference(s) not be found
+  - Should a request result in multiple possible references — allow the person to choose. 
