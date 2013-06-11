@@ -5,15 +5,28 @@
     %link(rel="stylesheet" href="")
   %body
     - @isbns.each do |isbn|
-      - book      = @details.find_by_isbn(isbn.strip)
-      - title     = book.title
-      - date      = book.publish_date
-      - publisher = book.publishers[0]["name"]
-      - author    = book.authors[0]["name"]
+      - book       = @details.find_by_isbn(isbn.strip)
+      - title      = book.title
+      - date       = book.publish_date
+      - publishers = book.publishers
+      - authors    = book.authors
 
       -# Display reference
       %p
-        = "#{author}, #{date}."
+        -# Author(s)
+        - authors.each do |author|
+          = "#{ author["name"] }, "
+
+        -# Date
+        = "#{ date }."
+        
+        -# Title
         %em
-          = "#{title}."
-        = " #{publisher}"
+          = "#{ title }. "
+
+        -# Publisher(s)
+        - count = publishers.length
+        - publishers.each do |publisher|
+          - punctuation = count > 1 ? "," : "."
+          = "%s%s" % [publisher["name"], punctuation]
+          - count -= 1
