@@ -3,8 +3,8 @@ Still a WIP but when done will quickly and easily generate a Harvard System bibl
 
 ![Le Demo](http://f.cl.ly/items/3z0M2J381B3A2J2f113b/demo.gif)
 
-###TODO
-- Add more possible inputs
+##TODO
+- Add support for more inputs
   - Book titles
   - Websites
   - Other (journals, newspapers, etc)
@@ -13,7 +13,7 @@ Still a WIP but when done will quickly and easily generate a Harvard System bibl
 - Let the output be editable
   - In case of error it's easily fixable 
   - Dump output into a textbox?
-- Copy to clipboard button
+- <del>Copy to clipboard button</del>
 - Make it pretty and stuffs
-  - Also add appropriate message should a reference(s) not be found
+  - Add an appropriate message should a reference(s) not be found
   - Should a request result in multiple possible references — allow the person to choose. 
