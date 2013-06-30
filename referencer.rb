@@ -1,3 +1,4 @@
+require 'haml'
 require 'sinatra'
 require 'openlibrary'
 

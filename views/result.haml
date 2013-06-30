@@ -4,6 +4,7 @@
     %title Results!
     %link(rel="stylesheet" href="")
   %body
+    - references = ""
     - @isbns.each do |isbn|
       - book       = @details.find_by_isbn(isbn.strip)
       - title      = book.title
@@ -11,22 +12,35 @@
       - publishers = book.publishers
       - authors    = book.authors
 
-      -# Display reference
-      %p
-        -# Author(s)
-        - authors.each do |author|
-          = "#{ author["name"] }, "
+      -# Build out reference
+      - reference = ""
+      
+      -# Author(s)
+      - authors.each do |author|
+        - reference << "#{ author["name"] }, "
 
-        -# Date
-        = "#{ date }."
-        
-        -# Title
-        %em
-          = "#{ title }. "
+      -# Date
+      - reference << "#{ date }. "
+      
+      -# Title
+      -#%em removed italics for now, add later
+      - reference << "#{ title }. "
 
-        -# Publisher(s)
-        - count = publishers.length
-        - publishers.each do |publisher|
-          - punctuation = count > 1 ? "," : "."
-          = "%s%s" % [publisher["name"], punctuation]
-          - count -= 1
+      -# Publisher(s)
+      - count = publishers.length
+      - publishers.each do |publisher|
+        - punctuation = count > 1 ? "," : "."
+        - reference << "%s%s" % [publisher["name"], punctuation]
+        - count -= 1
+      
+      -# Append reference
+      - references << reference + "\n"
+
+    -# Display references
+    %pre{:id => "refs", :style => ""}= references.strip
+
+    %br
+    <button id="copy-button" data-clipboard-target="refs" title="Click to copy references">Copy all to clipboard</button>
+    %script{:src => "scripts/ZeroClipboard.min.js"}
+    %script{:src => "scripts/clipboard.js"}
+    
