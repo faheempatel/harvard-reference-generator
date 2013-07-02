@@ -4,40 +4,8 @@
     %title Results!
     %link(rel="stylesheet" href="")
   %body
-    - references = ""
-    - @isbns.each do |isbn|
-      - book       = @details.find_by_isbn(isbn.strip)
-      - title      = book.title
-      - date       = book.publish_date
-      - publishers = book.publishers
-      - authors    = book.authors
-
-      -# Build out reference
-      - reference = ""
-      
-      -# Author(s)
-      - authors.each do |author|
-        - reference << "#{ author["name"] }, "
-
-      -# Date
-      - reference << "#{ date }. "
-      
-      -# Title
-      -#%em removed italics for now, add later
-      - reference << "#{ title }. "
-
-      -# Publisher(s)
-      - count = publishers.length
-      - publishers.each do |publisher|
-        - punctuation = count > 1 ? "," : "."
-        - reference << "%s%s" % [publisher["name"], punctuation]
-        - count -= 1
-      
-      -# Append reference
-      - references << reference + "\n"
-
     -# Display references
-    %pre{:id => "refs", :style => ""}= references.strip
+    %pre{:id => "refs"}= @references
 
     %br
     <button id="copy-button" data-clipboard-target="refs" title="Click to copy references">Copy all to clipboard</button>
