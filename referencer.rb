@@ -2,6 +2,46 @@ require 'haml'
 require 'sinatra'
 require 'openlibrary'
 
+helpers do
+
+    def get_book_reference(isbn)
+        api        = Openlibrary::Data
+        book       = api.find_by_isbn(isbn)
+        title      = book.title
+        date       = book.publish_date
+        publishers = book.publishers
+        authors    = book.authors
+
+        # Build up reference
+        reference = ""
+         
+        # Author(s)
+        authors.each do |author|
+            reference << "#{ author["name"] }, "
+        end
+
+        # Date
+        reference << "#{ date }. "
+          
+        # Title
+        reference << italicise(title) + ". "
+
+        # Publisher(s)
+        count = publishers.length
+        publishers.each do |publisher|
+            punctuation = count > 1 ? "," : "."
+            reference << "%s%s" % [publisher["name"], punctuation]
+            count -= 1
+        end
+        return reference
+    end
+
+    def italicise(text)
+        return "<em>#{ text }</em>"
+    end
+
+end
+
 get '/' do
     haml :index
 end
@@ -21,36 +61,4 @@ post '/result' do
     haml :result
 end
 
-def get_book_reference(isbn)
-    details = Openlibrary::Data
-    
-    book       = details.find_by_isbn(isbn)
-    title      = book.title
-    date       = book.publish_date
-    publishers = book.publishers
-    authors    = book.authors
 
-    # Build up reference
-    reference = ""
-     
-    # Author(s)
-    authors.each do |author|
-        reference << "#{ author["name"] }, "
-    end
-
-    # Date
-    reference << "#{ date }. "
-      
-    # Title
-    reference << "#{ title }. "
-
-    # Publisher(s)
-    count = publishers.length
-    publishers.each do |publisher|
-        punctuation = count > 1 ? "," : "."
-        reference << "%s%s" % [publisher["name"], punctuation]
-        count -= 1
-    end
-
-    return reference
-end
