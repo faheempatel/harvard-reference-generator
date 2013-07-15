@@ -8,7 +8,7 @@ helpers do
         api        = Openlibrary::Data
         book       = api.find_by_isbn(isbn)
         title      = book.title
-        date       = book.publish_date
+        year       = /\d\d\d\d/.match(book.publish_date)
         publishers = book.publishers
         authors    = book.authors
 
@@ -20,11 +20,11 @@ helpers do
             reference << "#{ author["name"] }, "
         end
 
-        # Date
-        reference << "#{ date }. "
+        # Year of publication
+        reference << "#{ year }. "
           
         # Title
-        reference << italicise(title) + ". "
+        reference << italicise(title) << ". "
 
         # Publisher(s)
         count = publishers.length
@@ -33,6 +33,7 @@ helpers do
             reference << "%s%s" % [publisher["name"], punctuation]
             count -= 1
         end
+
         return reference
     end
 
@@ -55,10 +56,9 @@ post '/result' do
     # Get references
     @references = ""
     isbns.each do |isbn|
-        @references << get_book_reference(isbn.strip) + "\n"
+        @references << get_book_reference(isbn.strip) << "\n"
     end
     
     haml :result
 end
-
 
